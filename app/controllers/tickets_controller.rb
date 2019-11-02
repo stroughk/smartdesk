@@ -5,8 +5,16 @@ class TicketsController < ApplicationController
 
     def create
         @ticket = Ticket.new(ticket_params)
-        @ticket.save
-        redirect_to tickets_show(@ticket)
+        if @ticket.save
+            flash[:notice] = "Ticket was sucessfully created"
+            redirect_to ticket_path(@ticket)
+        else
+            render 'new'
+        end
+    end
+
+    def show
+        @ticket = Ticket.find(params[:id])
     end
 
     private
