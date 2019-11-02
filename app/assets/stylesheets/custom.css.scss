@@ -1,2 +1,19 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.center {
+    text-align: center;
+}
+
+body {
+    background-color: #07d;
+    background-image: asset-url('pictures/Helpdesk.png');
+    background-repeat: no-repeat;
+    background-position: floor($number: 7);
+    background-size: cover;
+}
+
+.jumbotron {
+    background-size: cover;
+    height: 400px;
+}
