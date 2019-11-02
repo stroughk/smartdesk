@@ -36,6 +36,13 @@ class TicketsController < ApplicationController
         @ticket = Ticket.find(params[:id])
     end
 
+    def destroy
+        @ticket = Ticket.find(params[:id])
+        @ticket.destroy
+        flash[:notice] = "Ticket was successfully deleted"
+        redirect_to tickets_path
+    end
+
     private
     def ticket_params
         params.required(:ticket).permit(:title, :description)  #allow these via params
