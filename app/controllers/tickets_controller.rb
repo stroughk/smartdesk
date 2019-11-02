@@ -17,7 +17,7 @@ class TicketsController < ApplicationController
     def create
         @ticket = Ticket.new(ticket_params)
         if @ticket.save
-            flash[:notice] = "Ticket was sucessfully created"
+            flash[:success] = "Ticket was sucessfully created"
             redirect_to ticket_path(@ticket)
         else
             render 'new'
@@ -27,7 +27,7 @@ class TicketsController < ApplicationController
     def update
 
         if @ticket.update(ticket_params)
-            flash[:notice] = "Ticket was successfully updated"
+            flash[:success] = "Ticket was successfully updated"
             redirect_to ticket_path(@ticket)
         else
             render 'edit'
@@ -41,7 +41,7 @@ class TicketsController < ApplicationController
     def destroy
 
         @ticket.destroy
-        flash[:notice] = "Ticket was successfully deleted"
+        flash[:danger] = "Ticket was successfully deleted"
         redirect_to tickets_path
     end
 
