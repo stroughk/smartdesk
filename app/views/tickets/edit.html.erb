@@ -1,0 +1,26 @@
+<h1>Edit Existing Ticket</h1>
+
+<% if @ticket.errors.any? %>
+<h3>Your ticket was not created because of these errors: </h3>
+<ul>
+    <% @ticket.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+    </ul>
+<% end %>
+
+
+<%= form_for @ticket do |f| %>
+    <p>
+        <%= f.label :title %><br/>
+        <%= f.text_field :title %>
+    </p>
+    <p>
+        <%= f.label :description %><br/>
+        <%= f.text_field :description %>
+    </p>
+    <p>
+        <%= f.submit %>
+    </p>
+<% end %>
+

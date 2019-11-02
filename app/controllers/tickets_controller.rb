@@ -3,6 +3,10 @@ class TicketsController < ApplicationController
         @ticket = Ticket.new
     end
 
+    def edit
+        @ticket = Ticket.find(params[:id])
+    end
+
     def create
         @ticket = Ticket.new(ticket_params)
         if @ticket.save
@@ -10,6 +14,16 @@ class TicketsController < ApplicationController
             redirect_to ticket_path(@ticket)
         else
             render 'new'
+        end
+    end
+
+    def update
+        @ticket = Ticket.find(params[:id])
+        if @ticket.update(ticket_params)
+            flash[:notice] = "Ticket was successfully updated"
+            redirect_to ticket_path(@ticket)
+        else
+            render 'edit'
         end
     end
 
