@@ -7,3 +7,6 @@
 <p>
     Description: <%= @ticket.description %>
 </p>
+
+<%= link_to "Edit this ticket", edit_ticket_path(@ticket) %> |
+<%= link_to "See all Smartdesk tickets", tickets_path %>

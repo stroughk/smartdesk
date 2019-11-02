@@ -1,0 +1,20 @@
+<h1>Listing All Smartdesk Tickets</h1>
+<p>
+<%= link_to "Create a new ticket", new_ticket_path %>
+</p>
+
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Desciption</th>
+    </tr>
+
+    <% @tickets.each do |ticket| %>
+        <tr>
+            <td><%= ticket.title %></td>
+            <td><%= ticket.description %></td>
+            <td><%= link_to 'Edit', edit_ticket_path(ticket) %></td>
+            <td><%= link_to 'Show', ticket_path(ticket) %></td>
+        </tr>
+    <% end%>
+</table>
