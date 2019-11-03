@@ -18,12 +18,12 @@ class TicketsController < ApplicationController
 
     def create
         @ticket = Ticket.new(ticket_params)
-        @ticket.user = User.first
+        @ticket.user = current_user
         if @ticket.save
-            flash[:success] = "Ticket was sucessfully created"
-            redirect_to ticket_path(@ticket)
+          flash[:success] = "Ticket was created successfully"
+          redirect_to ticket_path(@ticket)
         else
-            render 'new'
+          render 'new'
         end
     end
 
