@@ -10,6 +10,12 @@
                     </div>
                     <div class="ticket-body">
                         <%= truncate(ticket.description, length: 100) %>
+                        <div class="ticket-meta-details">
+                            <small>Created by: <%= ticket.user.username if ticket.user %>, 
+                                <%= time_ago_in_words(ticket.created_at) %> ago, 
+                                last updated: <%= time_ago_in_words(ticket.updated_at) %>
+                            </small>
+                        </div>
                     </div>
                     <div class="ticket-actions">
                         <%= link_to "Edit", edit_ticket_path(ticket), class: "btn btn-xs btn-primary" %> 
