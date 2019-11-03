@@ -1,6 +1,8 @@
 class TicketsController < ApplicationController
 
     before_action :set_ticket, only: [:edit, :update, :show, :destroy]
+    before_action :require_user, except: [:index, :show]    
+    before_action :require_same_user, only: [:edit, :update, :destroy]
 
     def index
         @tickets = Ticket.all
@@ -26,7 +28,6 @@ class TicketsController < ApplicationController
     end
 
     def update
-
         if @ticket.update(ticket_params)
             flash[:success] = "Ticket was successfully updated"
             redirect_to ticket_path(@ticket)
@@ -36,7 +37,6 @@ class TicketsController < ApplicationController
     end
 
     def show
-  
     end
 
     def destroy
@@ -55,5 +55,11 @@ class TicketsController < ApplicationController
         params.required(:ticket).permit(:title, :description)  #allow these via params
     end
 
+    def require_same_user
+        if current_user != @article.user
+        flash[:danger] = "You can only edit or delete your own articles"
+        redirect_to root_path
+        end
+    end
 
 end
