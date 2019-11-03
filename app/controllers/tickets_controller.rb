@@ -39,7 +39,6 @@ class TicketsController < ApplicationController
     end
 
     def destroy
-
         @ticket.destroy
         flash[:danger] = "Ticket was successfully deleted"
         redirect_to tickets_path
