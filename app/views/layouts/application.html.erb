@@ -12,7 +12,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
        <div class="row">
-        <div class="col-md-6 col-md-offset-3">
+        <div class="col-md-8 col-md-offset-0">
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                   <ul class="nav navbar-nav">
                       <li><%= link_to "Home", root_path %></li>
@@ -22,7 +22,7 @@
                         <li><%= link_to "Create a New Ticket", new_ticket_path %></li>
 
                             <% if current_user.agent?%>
-                               <li><%= link_to "Agent", user_path(current_user)%></li>
+                               <li><%= link_to "Smartdesk Agent", user_path(current_user)%></li>
                             <% else %>
                                <li><%= link_to "Your Profile", user_path(current_user) %></li>
                             <% end %>
