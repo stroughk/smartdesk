@@ -56,7 +56,7 @@ class TicketsController < ApplicationController
     end
 
     def require_same_user
-        if current_user != @ticket.user
+        if current_user != @ticket.user and !current_user.agent?
         flash[:danger] = "You can only edit or delete your own tickets"
         redirect_to root_path
         end

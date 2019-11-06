@@ -3,9 +3,11 @@
     <hr>
     <%= simple_format(@ticket.description) %>
     <div class="ticket-actions">
+        <% if logged_in? && (current_user == @ticket.user || current_user.agent?) %>
         <%= link_to "Edit", edit_ticket_path(@ticket), class: "btn btn-xs btn-primary" %> 
         <%= button_to "Delete", ticket_path(@ticket), method: :delete, data: {confirm: "Are you sure you want to delete this ticket?"}, 
         class: "btn btn-xs btn-danger" %>
         <%= link_to "All Smartdesk Tickets", tickets_path, class: "btn btn-xs btn-success" %>
+        <% end %>
     </div>
 </div>
