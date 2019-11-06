@@ -7,6 +7,10 @@
                     <%= link_to user.username, user_path(user) %>
                 </li>
                 <li><small><%= pluralize(user.tickets.count, "ticket") if user.tickets %></small></li>
+                <% if logged_in? and current_user.agent? %>
+                <li><%= button_to "Delete this client", user_path(user), method: :delete, 
+                data: { confirm: "Are you sure you want to delete this client and all the tickets?"} %></li>
+                <% end %>
             </div>
         </div>
     </ul>
