@@ -2,6 +2,9 @@
     <h4 class="center"><strong><%= @ticket.title %></strong></h4>
     <hr>
     <%= simple_format(@ticket.description) %>
+       <% if @ticket.categories.any? %>
+            <p>Categories: <%= render @ticket.categories %></p>
+        <% end %>
     <div class="ticket-actions">
         <% if logged_in? && (current_user == @ticket.user || current_user.agent?) %>
         <%= link_to "Edit", edit_ticket_path(@ticket), class: "btn btn-xs btn-primary" %> 
