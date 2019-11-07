@@ -52,7 +52,7 @@ class TicketsController < ApplicationController
     end
 
     def ticket_params
-        params.required(:ticket).permit(:title, :description)  #allow these via params
+        params.required(:ticket).permit(:title, :description, category_ids: [])  
     end
 
     def require_same_user
