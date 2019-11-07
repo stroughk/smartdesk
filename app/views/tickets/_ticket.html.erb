@@ -10,6 +10,10 @@
                     <div class="ticket-body">
                         <%= truncate(ticket.description, length: 100) %>
                         <div class="ticket-meta-details">
+                            <% if ticket.categories.any? %>
+                                <p>Categories: <%= render ticket.categories %></p>
+                            <% end %>
+                             
                             <small>Created by: <%= ticket.user.username if ticket.user %>, 
                                 <%= time_ago_in_words(ticket.created_at) %> ago, 
                                 last updated: <%= time_ago_in_words(ticket.updated_at) %>
@@ -22,9 +26,11 @@
                         <%= link_to "Delete", ticket_path(ticket), method: :delete, 
                                                 data: { confirm: "Are you sure you want to delete this ticket?" }, 
                                                 class: "btn btn-xs btn-danger" %>
+                        <input type="checkbox" name="completed" value="true" unchecked> Check if ticket is completed<br>
                     </div>
                     <% end %>
                 </div>
             </div>
         </div>
     <% end%>
+    
