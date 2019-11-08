@@ -13,5 +13,9 @@ Rails.application.routes.draw do
   get 'logout' => 'sessions#destroy'
   delete 'logout', to: 'sessions#destroy'
 
-  resources :categories, except: [:destroy]
+  resources :categories, except: [:destroy] do
+    resources :tickets, shallow: true
+  end
+
+
 end

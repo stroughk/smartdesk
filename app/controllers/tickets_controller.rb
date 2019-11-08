@@ -9,7 +9,14 @@ class TicketsController < ApplicationController
     end
 
     def new
-        @ticket = Ticket.new
+        if params[:category_id] && @category = Category.find(params[:category_id])
+            #find that category in the database
+            #instantiate a ticket associated to that category
+
+            @ticket = @category.tickets.new
+        else
+            @ticket = Ticket.new
+        end
     end
 
     def edit
@@ -17,6 +24,8 @@ class TicketsController < ApplicationController
     end
 
     def create
+        #if params[:category_id]
+
         @ticket = Ticket.new(ticket_params)
         @ticket.user = current_user
         if @ticket.save

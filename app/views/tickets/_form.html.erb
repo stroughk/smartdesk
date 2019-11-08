@@ -1,7 +1,7 @@
 <%= render '/shared/errors', obj: @ticket %>
 <div class='row'>
     <div class='col-xs-12'>
-        <%= form_for(@ticket, :html => { class: "form-horizontal", role: "form" }) do |f| %>
+        <%= form_for([@category, @ticket], :html => { class: "form-horizontal", role: "form" }) do |f| %>
             <div class="form-group">
                 <div class="col-sm-8">
                     <%= f.text_field :title, class: "form-control", placeholder: "Title of ticket", autofocus: true  %>
