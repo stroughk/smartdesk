@@ -26,7 +26,14 @@
                         <%= link_to "Delete", ticket_path(ticket), method: :delete, 
                                                 data: { confirm: "Are you sure you want to delete this ticket?" }, 
                                                 class: "btn btn-xs btn-danger" %>
-                        <input type="checkbox" name="completed" value="true" unchecked> Ticket Completed<br>
+               
+               <!-- 
+                        <input id="complete" name="complete" type="checkbox" value="true" />
+                        <label for="complete">Ticket Complete</label>
+-->
+
+
+                        <br>
                     </div>
                     <% end %>
                 </div>

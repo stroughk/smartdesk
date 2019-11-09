@@ -9,6 +9,10 @@ class TicketsController < ApplicationController
         @tickets = Ticket.all
     end
 
+    def complete
+        @tickets = Ticket.all.complete
+    end
+
     def new
         @ticket = Ticket.new
     end
@@ -58,7 +62,7 @@ class TicketsController < ApplicationController
     end
 
     def ticket_params
-        params.required(:ticket).permit(:title, :description, category_ids: [])  
+        params.required(:ticket).permit(:title, :description, :complete, category_ids: [])  
     end
 
     def require_same_user

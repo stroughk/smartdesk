@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   root 'welcome#home'
   get 'about', to: 'welcome#about'
 
+  get 'tickets/complete', to: 'tickets#complete'
+
   resources :tickets
 
   get 'signup', to: 'users#new'
