@@ -1,6 +1,7 @@
 class TicketsController < ApplicationController
 
     before_action :set_ticket, only: [:edit, :update, :show, :destroy]
+    # before_action :set_category, only: [:create, :new]
     before_action :require_user, except: [:index, :show]    
     before_action :require_same_user, only: [:edit, :update, :destroy]
 
@@ -9,14 +10,7 @@ class TicketsController < ApplicationController
     end
 
     def new
-        if params[:category_id] && @category = Category.find(params[:category_id])
-            #find that category in the database
-            #instantiate a ticket associated to that category
-
-            @ticket = @category.tickets.new
-        else
-            @ticket = Ticket.new
-        end
+        @ticket = Ticket.new
     end
 
     def edit
@@ -24,10 +18,9 @@ class TicketsController < ApplicationController
     end
 
     def create
-        #if params[:category_id]
-
         @ticket = Ticket.new(ticket_params)
         @ticket.user = current_user
+
         if @ticket.save
           flash[:success] = "Ticket was created successfully"
           redirect_to ticket_path(@ticket)
@@ -58,6 +51,10 @@ class TicketsController < ApplicationController
 
     def set_ticket
         @ticket = Ticket.find(params[:id])
+    end
+
+    def set_category
+        @category = Category.find(params[:category_id])
     end
 
     def ticket_params
