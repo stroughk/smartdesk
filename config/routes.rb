@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create'
   get 'logout' => 'sessions#destroy'
   delete 'logout', to: 'sessions#destroy'
+  get '/auth/:provider/callback' => 'sessions#create'
 
   resources :categories, except: [:destroy] do
     resources :tickets , shallow: true

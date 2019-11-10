@@ -4,14 +4,32 @@ class SessionsController < ApplicationController
     end
 
     def create
-        user = User.find_by(email: params[:session][:email].downcase)
-        if user && user.authenticate(params[:session][:password])
-            session[:user_id] = user.id
-            flash[:success] = "You are now logged in"
-            redirect_to user_path(user)
+        if auth_hash = request.env["omniauth.auth"]
+            oauth_email = request.env["omniauth.auth"]["info"]["email"]
+            if user = User.find_by(:email => oauth_email)
+            session[:user_id] = user.id    
+            redirect_to root_path
+            else
+            user = User.new(:email => oauth_email, :password => SecureRandom.hex)
+                if user.save
+                    session[:user_id] = user.id 
+                    redirect_to user_path(user)
+                else
+                    flash.now[:danger] = "You login via Github was not successful. Please sign up to use Smartdesk."
+                    render 'new'
+                end
+            end     
+
         else
-            flash.now[:danger] = "You login was not successful. Please try again or sign up to use Smartdesk."
-        render 'new'
+            user = User.find_by(email: params[:session][:email].downcase)
+            if user && user.authenticate(params[:session][:password])
+                session[:user_id] = user.id
+                flash[:success] = "You are now logged in"
+                redirect_to user_path(user)
+            else
+                flash.now[:danger] = "You login was not successful. Please try again or sign up to use Smartdesk."
+            render 'new'
+            end
         end
     end        
 
