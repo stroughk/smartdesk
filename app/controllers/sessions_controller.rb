@@ -11,14 +11,12 @@ class SessionsController < ApplicationController
                 redirect_to user_path(user)
             else
                 user = User.new(:email => oauth_email, :password => SecureRandom.hex, :username => oauth_email)
-                #user = User.new(email: oauth_email)
-                # binding.pry
                 if user.save
                     session[:user_id] = user.id 
                     redirect_to user_path(user)
                 else
                     flash.now[:danger] = "You login via Github was not successful. Please sign up to use Smartdesk."
-                     render 'new'
+                    render 'new'
                 end
             end     
 
