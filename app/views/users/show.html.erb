@@ -1,8 +1,7 @@
 <div class="profile">
     <div class="col-md-4 col-md-offset-4 center">
         <h1 align="center">Hello, <%= @user.username %>!</h1>
-        <h1 align="center">Your email is <%= @user.email %></h1>
-    </div>
+     </div>
 </div>
 
 <%= render 'tickets/ticket', obj: @user.tickets %>
