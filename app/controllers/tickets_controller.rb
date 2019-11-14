@@ -10,11 +10,12 @@ class TicketsController < ApplicationController
     end
 
     def complete
-        @tickets = Ticket.all.complete
+        @tickets = Ticket.complete
     end
 
     def new
-        @ticket = Ticket.new
+        @category = Category.find(params[:category_id])
+        @ticket = @category.tickets.build
     end
 
     def edit
